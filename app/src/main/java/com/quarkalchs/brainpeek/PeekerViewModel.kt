@@ -16,6 +16,6 @@ class PeekerViewModel : ViewModel() {
             // It may also be necessary to adjust the character class
             words[i] = words[i].replace("[^\\w]".toRegex(), "")
         }
-        words.toMutableList() = longTextOnAList
+        longTextOnAList = words.toMutableList()
     }
 }
