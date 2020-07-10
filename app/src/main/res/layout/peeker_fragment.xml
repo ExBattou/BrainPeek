@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PeekerFragment">
+
+    <TextView
+        android:id="@+id/text_show_word"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Start!"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/guide_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guide_top" />
+
+    <ImageButton
+        android:id="@+id/pause_button"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/pause_button"
+        app:layout_constraintBottom_toBottomOf="@id/guide_mid"
+        app:layout_constraintStart_toEndOf="@id/start_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guide_mid" />
+
+    <ImageButton
+        android:id="@+id/start_button"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/play_button"
+        app:layout_constraintEnd_toStartOf="@id/pause_button"
+        app:layout_constraintBottom_toBottomOf="@id/guide_mid"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guide_mid" />
+
+    <TextView
+        android:id="@+id/text_show_paragraph"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="dsho"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guide_bot"
+        android:gravity="center_horizontal" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide_mid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide_bot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.7" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
