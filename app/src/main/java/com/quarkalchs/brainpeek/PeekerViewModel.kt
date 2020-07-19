@@ -18,6 +18,8 @@ class PeekerViewModel : ViewModel() {
     var currentPosition = 0
     var haveToDoYerThing = false // Esto se utiliza para que, si esta en true, ejecuta el metodo doYerThang que cambia las palabras de la lista.
     // cuando pasa a false se corta el thread.
+    // se me ocurrio una manera mas copada de hacerla, es que este observando continuamente el valor currentWord, y cuando cambia, you Do yer thing.
+
 
     fun listify(a: String) {
         longText = a
@@ -28,12 +30,16 @@ class PeekerViewModel : ViewModel() {
         longTextOnAList = words.toMutableList()
     }
 
-    suspend fun doYerThang(delayed: Long) {
-        viewModelScope.launch {
-            currentWord.value = longTextOnAList.get(currentPosition)
-            delay(delayed)
-            currentPosition++
+    fun doYerThang(delayed: Long) {
+        haveToDoYerThing = true
+        while(haveToDoYerThing) {
+            viewModelScope.launch {
+                currentWord.value = longTextOnAList.get(currentPosition)
+                delay(delayed)
+                currentPosition++
+            }
         }
+
     }
 
     fun showWord() : LiveData<String> {

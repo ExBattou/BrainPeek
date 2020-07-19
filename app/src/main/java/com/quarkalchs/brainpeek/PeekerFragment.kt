@@ -6,6 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.peeker_fragment.*
 
 class PeekerFragment : Fragment() {
@@ -13,8 +16,7 @@ class PeekerFragment : Fragment() {
     companion object {
         fun newInstance() = PeekerFragment()
     }
-
-    private lateinit var viewModel: PeekerViewModel
+    lateinit var viewModelPK:PeekerViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,20 +25,21 @@ class PeekerFragment : Fragment() {
         return inflater.inflate(R.layout.peeker_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(PeekerViewModel::class.java)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+         viewModelPK = PeekerViewModel()
+
         start_button.setOnClickListener {
             playWords(true)
         }
         pause_button.setOnClickListener {
-            playWords(false)
+            stopWords()
         }
-
+        startTextsForPlay()
+        viewModelPK.showWord().observe(viewLifecycleOwner, Observer {
+            text_show_paragraph.text = it
+        })
     }
 
     private fun startTextsForPlay() {
@@ -50,10 +53,14 @@ class PeekerFragment : Fragment() {
                 "\n" +
                 "Desafortunadamente para él, algún memorioso o fanático de las películas de ciencia ficción reconoció la estructura de su discurso. Si bien el mandatario municipal se encargó de adaptarlo al contexto de la pandemia, plagió varias partes de la emotiva arenga previa a la batalla final contra los alienígenas en el film Día de la Independencia."
 
-        viewModel.listify(a)
+        viewModelPK.listify(a)
     }
 
     fun playWords(play: Boolean) {
+        viewModelPK.doYerThang(1000)
+    }
 
+    fun stopWords() {
+        viewModelPK.haveToDoYerThing = false
     }
 }
